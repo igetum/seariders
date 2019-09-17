@@ -4,3 +4,15 @@ Program:
 
 SRoster.py
 This program utilizes infinate campus extract to create usernames and passwords of students. Also sorts students by teacher/terms and outputs a papercutID.txt to use as a import for papercut ID numbers (student IDs)
+
+
+PaperCut Import
+
+To update papercut server to add in new users after Google user syncs. Run the sroster above to generate username and IDs for the students, a papercutID file shall be produced.
+
+1. Take the "papercutID.txt" file and drop is into /Application/PaperCut MF/server/bin/mac/imports folder on the papercut server.
+
+2. On papercut server, browse via terminal to /Applications/PaperCut MF/server/bin/mac
+
+3. Run command sudo ./server-command batch-import-user-card-id-numbers import/papercutID.txt
+
