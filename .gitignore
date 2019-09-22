@@ -2,7 +2,6 @@
 *.csv
 *.xlsx
 *.txt
-*.gitignore
 
 #Allow
 !requirements.txt
