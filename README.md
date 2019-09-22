@@ -13,7 +13,7 @@ This program utilizes infinate campus extract to create usernames and passwords 
 
         Optional flags:
         
-                -p : PaperCut import file
+                -p : Create PaperCut import file
 
 
 <h3>PaperCut Import</h3>
