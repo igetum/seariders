@@ -1,7 +1,7 @@
 # seariders
 
 
-<h1>SRoster.py</h1>
+<h3>SRoster.py</h3>
 This program utilizes infinate campus extract to create usernames and passwords of students. Also sorts students by teacher/terms and outputs a papercutID.txt to use as a import for papercut ID numbers (student IDs)
 
     Example:
@@ -13,7 +13,7 @@ This program utilizes infinate campus extract to create usernames and passwords 
                 -p : PaperCut import file
 
 
-PaperCut Import
+<h3>PaperCut Import</h3>
 
 To update papercut server to add in new users after Google user syncs. Run the sroster above to generate username and IDs for the students, a papercutID file shall be produced.
 
