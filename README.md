@@ -1,4 +1,4 @@
-# seariders
+# Searider Roster Script
 
 
 <h3>SRoster.py</h3>
