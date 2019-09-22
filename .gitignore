@@ -1,4 +1,4 @@
-#Dont Allow
+#Ignore
 *.csv
 *.xlsx
 *.txt
