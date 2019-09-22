@@ -1,4 +1,7 @@
 # Searider Roster Script
+    Requirements:
+        Python 3
+        openpyxl (pip install -r requirements.txt)
 
 
 <h3>SRoster.py</h3>
