@@ -56,9 +56,10 @@ def extractData(infile):
                 
     csv_file.close()
 
-def StudentSheet():
+def StudentSheet(verbose):
     ########################### "ALL STUDENTS" ##################################
-    print("\nProccessing All Students.... ")
+    if verbose:
+        print("\nProccessing All Students.... ")
 
     sheetname1 = "All Students"
     wb.create_sheet(title=sheetname1)
@@ -100,9 +101,10 @@ def StudentSheet():
 
         rowNum += 1 
 
-def ScheduleSheet():
+def ScheduleSheet(verbose):
     ############################ "SCHEDULES" ##################################
-    print("\nProccessing Schedule Sheet.... ")
+    if verbose:
+        print("\nProccessing Schedule Sheet.... ")
 
     sheetname2 = "Schedules"
     wb.create_sheet(title=sheetname2)
@@ -170,15 +172,17 @@ def ScheduleSheet():
 
             rowNum += 1
 
-def TeacherSheets():
+def TeacherSheets(verbose):
     ############################  TEACHERS ###################################
-    print("\nProcessing Teacher Sheets...")
+    if verbose:
+        print("\nProcessing Teacher Sheets...")
 
     for teacher in sorted (teacherData.keys()):
 
         wb.create_sheet(title=teacher)
 
-        print("\tCreating Sheet for [" + teacher + "]...")
+        if verbose:
+            print("\tCreating Sheet for [" + teacher + "]...")
 
         sheet = wb[teacher]
         
@@ -234,9 +238,10 @@ def TeacherSheets():
             rowNum += 1
 
 
-def StyleSheets():
+def StyleSheets(verbose):
     ############################  Styling ###################################
-    print("\nAlmost there! Making it pretty ...")
+    if verbose:
+        print("\nAlmost there! Making it pretty ...")
 
     font = Font(name='Calibri',
             size=12,
@@ -264,7 +269,11 @@ def StyleSheets():
             adjusted_width = (max_length + 2) * 1.2
             worksheet.column_dimensions[column].width = adjusted_width
 
-def papercutCardID(outputfile):
+def papercutCardID(outputfile, verbose):
+
+    if verbose:
+        print("\nCreating PaperCut import file")
+
     output = os.path.splitext(outputfile)[0]
     paperfile = open( 'papercut-'+output+'.txt', 'w')
 
@@ -294,6 +303,9 @@ def main():
     #Optional Args
     parser.add_argument("--paper", "-p", help="Create PaperCut import file to update users with ID numbers",
                         action="store_true")
+    
+    parser.add_argument("--verbose", "-v", help="See prints",
+                        action="store_true")
 
     args = parser.parse_args()
 
@@ -304,21 +316,23 @@ def main():
         print('EXITING PROGRAM')
         sys.exit()
         
-    StudentSheet()
-    ScheduleSheet()
-    TeacherSheets()
-    StyleSheets()
-    if args.paper:
-        papercutCardID(args.Output)
-    
+    print("Running Script...")
+    StudentSheet(args.verbose)
+    ScheduleSheet(args.verbose)
+    TeacherSheets(args.verbose)
+    StyleSheets(args.verbose)
 
+    if args.paper:
+        papercutCardID(args.Output, args.verbose)
+    
     try:
         wb.remove(wb['Sheet'])
     except:
         pass
 
     wb.save(args.Output)
-    print("Done!!!")
+
+    print("\nDone!")
 
  
 if __name__ == "__main__":
