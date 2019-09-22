@@ -1,3 +1,7 @@
+#Dont Allow
 *.csv
 *.xlsx
 *.txt
+
+#Allow
+!requirements.txt
