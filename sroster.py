@@ -1,9 +1,8 @@
 import openpyxl
 from openpyxl.styles import Font
 import csv
-import re
-import time
 import sys
+import os
 
 
 teacherData = {}
@@ -265,8 +264,9 @@ def StyleSheets():
             adjusted_width = (max_length + 2) * 1.2
             worksheet.column_dimensions[column].width = adjusted_width
 
-def papercutCardID():
-    paperfile = open( 'papercutID.txt', 'w')
+def papercutCardID(outputfile):
+    output = os.path.splitext(outputfile)[0]
+    paperfile = open( 'papercut-'+output+'.txt', 'w')
 
 
     for studentID in studentData:
@@ -276,17 +276,31 @@ def papercutCardID():
             
 
 def main():
-    print("\nRoster Extract to Excel")
-    print("_______________________________________________________________________")
-    print("\nInput the name of the roster file name (include the '.csv' extension)")
-    infile = input("\n\tEnter input file name: ")
-    print("\nInput the excel output file name (include the '.xlsx' extension)")
-    outfile = input("\n\tEnter output file name: ")
+
+    # include standard modules
+    import argparse
+
+    # define the program description
+    text = 'This program parses infinite campus csv extract file and sorts students under their assigned\
+            teachers. Optional: Outputs a import file for PaperCut ID to update papercut users with their IDs.'
+
+    # initiate the parser with a description
+    parser = argparse.ArgumentParser(description = text)
+
+    #Required Positional
+    parser.add_argument("Input", help="Infinite Campus csv file")
+    parser.add_argument("Output", help="XLSX output file")
+
+    #Optional Args
+    parser.add_argument("--paper", "-p", help="Create PaperCut import file to update users with ID numbers",
+                        action="store_true")
+
+    args = parser.parse_args()
 
     try:
-        extractData(infile)
+        extractData(args.Input)
     except:
-        print('\n\nERROR: Cant find file ' + infile + '.')
+        print('\n\nERROR: Cant find file ' + args.Input + '.')
         print('EXITING PROGRAM')
         sys.exit()
         
@@ -294,7 +308,8 @@ def main():
     ScheduleSheet()
     TeacherSheets()
     StyleSheets()
-    papercutCardID()
+    if args.paper:
+        papercutCardID(args.Output)
     
 
     try:
@@ -302,7 +317,7 @@ def main():
     except:
         pass
 
-    wb.save(outfile)
+    wb.save(args.Output)
     print("Done!!!")
 
  
