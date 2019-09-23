@@ -10,7 +10,9 @@ This program utilizes infinate campus extract to create usernames and passwords 
     Requirements:
 
     Infinite Campus Export Field Order:
-        Student Number  Last Name	First Name	Birthdate	Term Start	Term End	Teacher Full Name	Period Start	Grade	Race Ethnicity	Gender	Room Name	Start Date	End Date
+        Student Number  Last Name	First Name	Birthdate	Term Start	Term End
+        Teacher Full Name	Period Start	Grade	Race Ethnicity	Gender	
+        Room Name	Start Date	End Date
 
     Example:
 
