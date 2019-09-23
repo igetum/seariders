@@ -12,7 +12,7 @@ wb = openpyxl.Workbook()
 def extractData(infile):
     with open(infile) as csv_file:
 
-        csv_reader = csv.reader(csv_file, delimiter=",")
+        csv_reader = csv.reader(csv_file)
 
         
         for data in csv_reader:
@@ -297,8 +297,8 @@ def main():
     parser = argparse.ArgumentParser(description = text)
 
     #Required Positional
-    parser.add_argument("Input", help="Infinite Campus csv file")
-    parser.add_argument("Output", help="XLSX output file")
+    parser.add_argument("input", help="Infinite Campus csv file")
+    parser.add_argument("output", help="XLSX output file")
 
     #Optional Args
     parser.add_argument("--paper", "-p", help="Create PaperCut import file to update users with ID numbers",
@@ -310,9 +310,9 @@ def main():
     args = parser.parse_args()
 
     try:
-        extractData(args.Input)
+        extractData(args.input)
     except:
-        print('\n\nERROR: Cant find file ' + args.Input + '.')
+        print('\n\nERROR: Cant find file ' + args.input + '.')
         print('EXITING PROGRAM')
         sys.exit()
         
@@ -323,14 +323,14 @@ def main():
     StyleSheets(args.verbose)
 
     if args.paper:
-        papercutCardID(args.Output, args.verbose)
+        papercutCardID(args.output, args.verbose)
     
     try:
         wb.remove(wb['Sheet'])
     except:
         pass
 
-    wb.save(args.Output)
+    wb.save(args.output)
 
     print("\nDone!")
 
