@@ -1,4 +1,5 @@
-# seariders
-roster parser for WHS
+# WHS Scripts and Things
 
-<a href="docs/papercut.md">link</a>
+<h3>Roster Scripts</h3>
+
+<h3>Papercut</h3>
