@@ -6,8 +6,9 @@ test
 
 <h3>Papercut</h3>
 
-Retrieve Mac Client Install
+Retrieve Mac Client Install<br>
     scp -r papercut@10.80.136.236:client/mac .
     
-Linux to Win Server papercut data backup script
+    
+Linux to Win Server papercut data backup script<br>
     scp -r server/data/backups/ administrator@10.80.136.241:VMBACKUPS/papercutBackup
