@@ -25,7 +25,7 @@ def extractData(infile):
                 teacher = data[6]
                 period_start = data[7]
                 grade = data[8]
-                room = data[11]
+                room = data[9]
             
                 ### JOIN NAMES FOR EMAIL and CLEANING UP SPEACIAL CHARS ###
                 email_first = ''.join(e for e in student_first if e.isalnum())
