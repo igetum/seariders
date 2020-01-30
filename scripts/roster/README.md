@@ -27,9 +27,17 @@ This program utilizes infinate campus extract to create usernames and passwords 
 
 To update papercut server to add in new users after Google user syncs. Run the sroster above to generate username and IDs for the students, a papercutID file shall be produced.
 
-    1. Take the <papercut import file> and drop is into /Application/PaperCut MF/server/bin/mac/imports folder on the papercut server.
-
-    2. On papercut server, browse via terminal to /Applications/PaperCut MF/server/bin/mac
-
-    3. Run command sudo ./server-command batch-import-user-card-id-numbers import/<papercut import file>
+    1. From the directory of the export file:
+        scp <export file> papercut@<server IP>:/home/papercut/server/bin/linux-x64/paperimport/<export file>
+        
+        This would move the file from your local computer to the remote papercut server
+      
+    2. SSH into papercut server.
+        ssh papercut@<server ip> -l papercut
+        
+    3. Browse to bin directory:
+        cd /server/bin/linux-x64/
+      
+    4. Run import script
+        ./server-command batch-import-user-card-id-numbers /paperimport/<export file>
 
