@@ -23,9 +23,9 @@ def extractData(infile):
                 term_start = data[4]
                 term_end = data[5]
                 teacher = data[6]
-                period_start = data[7]
-                grade = data[8]
-                room = data[9]
+                period_start = data[7] #6
+                grade = data[10]  #8
+                room = data[11]  #9
             
                 ### JOIN NAMES FOR EMAIL and CLEANING UP SPEACIAL CHARS ###
                 email_first = ''.join(e for e in student_first if e.isalnum())
@@ -48,7 +48,7 @@ def extractData(infile):
                     studentData[studentid]['classes'] = classes
 
                 ### TEACHER DICTIONARY FOR TEACHER SHEETS ###
-                if teacher is '':
+                if teacher == '':
                     teacher = 'Activity'
             
                 teacherData.setdefault(teacher, {})
@@ -190,14 +190,13 @@ def TeacherSheets(verbose):
         sheet['B1'] = 'Last Name'
         sheet['C1'] = 'First Name'
         sheet['D1'] = 'Grade'
-        sheet['E1'] = 'Teacher'
-        sheet['F1'] = 'Room Name'
-        sheet['G1'] = 'Period Start'
-        sheet['H1'] = 'Seariders Gmail'
-        sheet['I1'] = 'Password'
-        sheet['J1'] = 'Term Start'
-        sheet['K1'] = 'Term End'
-        sheet['L1'] = 'sort(Term Start)'
+        sheet['E1'] = 'Room Name'
+        sheet['F1'] = 'Period Start'
+        sheet['G1'] = 'Seariders Gmail'
+        sheet['H1'] = 'Password'
+        sheet['I1'] = 'Term Start'
+        sheet['J1'] = 'Term End'
+        sheet['K1'] = 'sort(Term Start)'
 
 
         sheet.freeze_panes = "A2"
@@ -226,14 +225,13 @@ def TeacherSheets(verbose):
             col2.value = student['lastname']
             col3.value = student['firstname']
             col4.value = student['grade']
-            col5.value = student['period_start']
-            col6.value = student['room']
-            col7.value = student['period_start']
-            col8.value = student['email']
-            col9.value = student['password']
-            col10.value = student['term_start']
-            col11.value = student['term_end']
-            col12.value = student['term_start'][1]
+            col5.value = student['room']
+            col6.value = student['period_start']
+            col7.value = student['email']
+            col8.value = student['password']
+            col9.value = student['term_start']
+            col10.value = student['term_end']
+            col11.value = student['term_start'][1]
 
             rowNum += 1
 
